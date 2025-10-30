@@ -13,7 +13,7 @@ const Footer = () => {
             </div>
             <div className='copyright'>
                 <p className='px'> ©  Kushal Gaddamwar.</p>
-                <img src="https://visitor-badge.glitch.me/badge?page_id=cfladder-kushal9889"></img>
+                <img src="https://visitor-badge.glitch.me/badge?page_id=cfladder-kushal9889" alt="Visitor badge"></img>
             </div>
         </footer>
     )

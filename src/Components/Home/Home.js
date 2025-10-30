@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import classes from './Home.module.css';
@@ -25,7 +25,7 @@ const ControlledInputs = () => {
                         // src='https://wallpapercave.com/wp/wp5990003.jpg'
                         // src="https://i.pinimg.com/564x/68/d2/86/68d286f02d955267263c8921b41e1c89.jpg"
                         src="https://i.pinimg.com/564x/65/66/ac/6566acdf9b62a091872d8ebdd6e1f463.jpg"
-                        alt="image" />
+                        alt="Codeforces ladder hero" />
                     <div className={classes.containertext}>
                         <h3 className="text-primary fw-bold pb-2">Codeforces Ladders  <br /></h3>
                         <p className="text">This ladder contain three ladders<br />With increasing  difficulties <br /> Next problem is locked until you solve previous problem  <br /> </p>
