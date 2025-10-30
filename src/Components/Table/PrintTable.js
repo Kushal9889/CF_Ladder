@@ -28,13 +28,13 @@ const PrintTable = (props) => {
                                     return (
                                         <>
                                             <tr className={openaccClass} >
-                                                <td scope="row" >
-                                                    <p>{i + 1}</p></td>
+                                                <th scope="row" >
+                                                    <p>{i + 1}</p></th>
                                                 <td style={{ marginLeft: '10px' }}> <p> {item.rating}</p></td>
                                                 <th >
                                                     {item.lock ?
                                                         <p >{item.name}</p> :
-                                                        <a className={cla} href={`https://codeforces.com/contest/${item.contestId}/problem/${item.index}`} target="_blank">{item.name}</a>
+                                                        <a className={cla} href={`https://codeforces.com/contest/${item.contestId}/problem/${item.index}`} target="_blank" rel="noreferrer">{item.name}</a>
                                                     }
                                                 </th>
                                                 {item.solved ?

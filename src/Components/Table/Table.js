@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../State/useFetchProblem";
-import { Table } from 'react-bootstrap'
+// import { Table } from 'react-bootstrap'
 import prob from '../../que'
 import probdp from "../../dp";
 import 'bootstrap/dist/css/bootstrap.css';
@@ -10,7 +10,7 @@ import './table.css'
 import PrintTable from "./PrintTable";
 
 
-const url = "https://codeforces.com/api/problemset.problems";
+// const url = "https://codeforces.com/api/problemset.problems";
 
 const Tablex = () => {
     return (
@@ -22,6 +22,7 @@ const Tablex = () => {
 
 const Problem = () => {
     const { handel, ladder } = useParams();
+    const ladderNum = Number(ladder);
     console.log(ladder);
     // let ladder = Number(lad);
 
@@ -38,27 +39,27 @@ const Problem = () => {
         }
         console.log(arr);
     }
-    if (ladder == 4) {
-        prob1.map((single) => {
+    if (ladderNum === 4) {
+        prob1.forEach((single) => {
             if (single.rating <= 1300 && single.rating >= 1200) {
                 items.push({ ...single, solved: false });
             }
         })
     }
-    else if (ladder == 5) {
-        prob1.map((single) => {
+    else if (ladderNum === 5) {
+        prob1.forEach((single) => {
             if (single.rating <= 1500 && single.rating >= 1400) {
                 items.push({ ...single, solved: false });
             }
         })
     }
-    else if (ladder == 6) {
+    else if (ladderNum === 6) {
         // items = probdp1.slice(0);
-        probdp1.map((single) => {
+        probdp1.forEach((single) => {
             if (single.rating <= 1600 && single.rating >= 1400) {
                 let check = false;
                 for (let i = 0; i < single.tags.length; i++) {
-                    if (single.tags[i] == 'dp') {
+                    if (single.tags[i] === 'dp') {
                         check = true;
                         break;
                     }
@@ -70,11 +71,10 @@ const Problem = () => {
             }
         })
     }
-    else if (ladder == 0) {
+    else if (ladderNum === 0) {
         let eight = 0
         let nine = 0
-        let ten = 0;
-        prob1.map((single) => {
+        prob1.forEach((single) => {
             let rat = Number(single.rating);
             if (eight < 40 && rat === 800) {
                 items.push({ ...single, solved: false });
@@ -82,14 +82,14 @@ const Problem = () => {
             } else if (nine < 25 && rat === 900) {
                 items.push({ ...single, solved: false });
                 nine++;
-            } else if (rat == 1000) {
+            } else if (rat === 1000) {
                 items.push({ ...single, solved: false });
 
             }
         })
     }
-    else if (ladder != 0) {
-        prob1.map((single) => {
+    else if (ladderNum !== 0) {
+        prob1.forEach((single) => {
             if (single.index !== 'A' && single.index !== 'B' && single.rating <= 1500 && single.rating > 1000) {
                 items.push({ ...single, solved: false });
             }
@@ -97,12 +97,11 @@ const Problem = () => {
     }
     const usersolver = [];
     let ctr = 0;
-    let name = handel;
     // calculating user problems solved and checking if he solved ladder quesstion or
     if (!loading) {
         console.log(products);
         if (products.status === 'OK') {
-            products.result.map((item, i) => {
+            products.result.forEach((item) => {
                 if (item.verdict === 'OK') {
                     const temp = {
                         contestId: item.problem.contestId,
@@ -112,14 +111,13 @@ const Problem = () => {
                 }
             })
         }
-        items.map((problem, i) => {
-            var __FOUND = usersolver.find(function (post, index) {
-                if (post.index === problem.index && post.contestId === problem.contestId) {
-                    problem.solved = true;
-                    // ctr++;
-                    return true;
-                }
+        items.forEach((problem) => {
+            const found = usersolver.some((post) => {
+                return post.index === problem.index && post.contestId === problem.contestId;
             });
+            if (found) {
+                problem.solved = true;
+            }
         })
     }
 
@@ -128,15 +126,15 @@ const Problem = () => {
     let que = [];
     let array = items.slice(0, 100);
     array.sort((a, b) => (a.rating) - (b.rating));
-    if (ladder == (0)) {
+    if (ladderNum === 0) {
         que = array.slice(0, 100);
     }
-    else if (ladder == (1)) {
+    else if (ladderNum === 1) {
         que = array.slice(0, 40);
-    } else if (ladder == (2)) {
+    } else if (ladderNum === 2) {
         que = array.slice(40, 70);
     }
-    else if (ladder == (3)) {
+    else if (ladderNum === 3) {
         que = array.slice(70, 100);
     } else {
         que = array.slice(0, 100);
